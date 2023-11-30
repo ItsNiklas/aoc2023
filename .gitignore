@@ -5,6 +5,7 @@ AoCTiles/
 
 # Inputs
 *.in
+inputs/
 
 ### C++ ###
 # Prerequisites
