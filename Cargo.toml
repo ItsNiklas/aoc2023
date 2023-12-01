@@ -11,3 +11,7 @@ rand = "0.8"
 [[bin]]
 name = "day00"
 path = "solutions/day00/day00.rs"
+
+[[bin]]
+name = "day01"
+path = "solutions/day01/day01.rs"

@@ -6,6 +6,7 @@ AoCTiles/
 # Inputs
 *.in
 inputs/
+.cph/
 
 ### C++ ###
 # Prerequisites
