@@ -4,16 +4,13 @@ import re
 
 
 inp: list[str] = open(0).readlines()
-schematic = "".join(map(lambda x: x.strip(), inp))
-nums = list(map(lambda m: (int(m.group(0)), m.start(), m.end()), re.finditer(r"(\d+)", schematic)))
-ll = len(inp[0]) - 1
+schematic = "".join(inp)
+nums: list[tuple[int, int, int]] = list(
+    map(lambda m: (int(m.group(0)), m.start(), m.end()), re.finditer(r"(\d+)", schematic))
+)
+
+ll = len(inp[0])
 dx = [-1, +1, -ll + 1, -ll, -ll - 1, ll - 1, +ll, ll + 1]
-# Bugfix :/
-for num, start, end in nums.copy():
-    if num > 1000:
-        nums.remove((num, start, end))
-        nums.append((num // 1000, start, end - 3))
-        nums.append((num % 1000, start + 3, end))
 
 
 def part1():
