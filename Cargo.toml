@@ -20,3 +20,7 @@ path = "solutions/day02/day02.rs"
 name = "day04"
 path = "solutions/day04/day04.rs"
 
+[[bin]]
+name = "day05"
+path = "solutions/day05/day05.rs"
+
