@@ -19,40 +19,36 @@ cardmap = {
 }
 
 
-def hand_power(card: str) -> str:
-    if cardmap["J"] != "11" and 0 < card.count("J") < 5:
+def hand_power(hand: str) -> str:
+    if cardmap["J"] != "11" and 0 < hand.count("J") < 5:
         # Replace Joker card with optimal card
-        card = card.replace("J", Counter(card.replace("J", "")).most_common(1).pop()[0])
+        hand = hand.replace("J", Counter(hand.replace("J", "")).most_common(1).pop()[0])
 
-    cnt = list(Counter(card).values())
+    cnt = list(Counter(hand).values())
 
-    if max(cnt) == 5:  # Five of a kind
-        return "6"
-
-    if max(cnt) == 4:  # Four of a kind
-        return "5"
-
-    if set(cnt) == {3, 2}:  # Full House
-        return "4"
-
-    if max(cnt) == 3:  # Three of a Kind
-        return "3"
-
-    if cnt.count(2) == 2:  # Two Pair
-        return "2"
-
-    if cnt.count(2) == 1:  # One Pair
-        return "1"
-
-    return ""  # High card
+    match max(cnt):
+        case 5:
+            return "6"  # Five of a kind
+        case 4:
+            return "5"  # Four of a kind
+        case 3:
+            return "4" if cnt.count(2) == 1 else "3"  # Full House or Three of a kind
+        case _:
+            match cnt.count(2):
+                case 2:
+                    return "2"  # Two Pair
+                case 1:
+                    return "1"  # One Pair
+                case _:
+                    return ""  # High card
 
 
-def hand(card: str) -> int:
-    return int(hand_power(card) + "".join(map(cardmap.get, card)))
+def hand_eval(hand: str) -> int:
+    return int(hand_power(hand) + "".join(map(cardmap.get, hand)))
 
 
 def part1():
-    return sum(i * v[1] for i, v in enumerate(sorted(inp, key=lambda x: hand(x[0])), 1))
+    return sum(i * v[1] for i, v in enumerate(sorted(inp, key=lambda x: hand_eval(x[0])), 1))
 
 
 def part2():
