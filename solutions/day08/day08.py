@@ -16,7 +16,7 @@ def part1(node):
 
 def part2():
     # Find cycle lengths.
-    return lcm(*(part1(node) for node in nodemap.keys() if node.endswith("A")))
+    return lcm(*map(part1, filter(lambda x: x.endswith("A"), nodemap.keys())))
 
 
 print(part1("AAA"), part2())
