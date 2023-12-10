@@ -2,13 +2,6 @@ inp: list[str] = open(0).readlines()
 
 
 def part1():
-    # sum = 0
-    # for line in inp:
-    #     ints = [int(c) for c in line if c.isnumeric()]
-    #     sum += ints[0] * 10 + ints[-1]
-
-    # return sum
-
     return sum(
         int(ints[0] + ints[-1]) for ints in (list(filter(str.isdigit, line)) for line in inp)
     )
@@ -16,22 +9,22 @@ def part1():
 
 def part2():
     global inp
-
+    
     spell = {
-        "one": "one1one",
-        "two": "two2two",
-        "three": "three3three",
-        "four": "four4four",
-        "five": "five5five",
-        "six": "six6six",
-        "seven": "seven7seven",
-        "eight": "eight8eight",
-        "nine": "nine9nine",
+        "one": "1",
+        "two": "2",
+        "three": "3",
+        "four": "4",
+        "five": "5",
+        "six": "6",
+        "seven": "7",
+        "eight": "8",
+        "nine": "9",
     }
 
     def process(line):
         for k, v in spell.items():
-            line = line.replace(k, v)
+            line = line.replace(k, k + v + k)
         return line
     
     inp = map(lambda line: process(line), inp)
