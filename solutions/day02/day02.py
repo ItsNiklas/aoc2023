@@ -29,6 +29,7 @@ def part2():
 
 
 inp = [
-    list(map(lambda x: x.split(), line.split(":")[1].replace(";", ",").split(", "))) for line in inp
+    list(map(lambda x: x.split(), line.split(":")[1].replace(";", ",").split(", ")))
+    for line in inp
 ]
 print(part1(), part2())

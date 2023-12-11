@@ -4,7 +4,8 @@ from itertools import batched
 inp: list[str] = open(0).read().split("\n\n")
 seeds: list[int] = list(map(int, inp.pop(0).split(": ")[1].split()))
 ranges: list[list[tuple[int, int, int]]] = [
-    [tuple(map(int, line.split())) for line in segment.splitlines()[1:]] for segment in inp
+    [tuple(map(int, line.split())) for line in segment.splitlines()[1:]]
+    for segment in inp
 ]
 
 

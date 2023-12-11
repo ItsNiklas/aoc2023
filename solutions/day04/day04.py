@@ -1,13 +1,18 @@
 inp: list[str] = open(0).readlines()
 cards: list[tuple[list[int], list[int]]] = [
-    tuple(list(map(int, part.strip().split())) for part in line.split(": ")[1].split(" | "))
+    tuple(
+        list(map(int, part.strip().split()))
+        for part in line.split(": ")[1].split(" | ")
+    )
     for line in inp
 ]
 N: int = len(cards)
 
 
 def part1():
-    return sum(2 ** (wins - 1) for win, have in cards if (wins := sum(x in win for x in have)))
+    return sum(
+        2 ** (wins - 1) for win, have in cards if (wins := sum(x in win for x in have))
+    )
 
 
 def part2():

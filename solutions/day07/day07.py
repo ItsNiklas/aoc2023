@@ -48,7 +48,9 @@ def hand_eval(hand: str) -> int:
 
 
 def part1():
-    return sum(i * v[1] for i, v in enumerate(sorted(inp, key=lambda x: hand_eval(x[0])), 1))
+    return sum(
+        i * v[1] for i, v in enumerate(sorted(inp, key=lambda x: hand_eval(x[0])), 1)
+    )
 
 
 def part2():
