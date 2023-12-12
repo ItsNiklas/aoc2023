@@ -6,7 +6,7 @@ My solutions for [Advent of Code](https://adventofcode.com/2023) in 2023. Probab
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2023 - 22 ⭐
+  2023 - 24 ⭐
 </h1>
 <a href="solutions/day01/day01.cpp">
   <img src="Media/2023/01.png" width="161px">
@@ -41,7 +41,7 @@ My solutions for [Advent of Code](https://adventofcode.com/2023) in 2023. Probab
 <a href="solutions/day11/day11.py">
   <img src="Media/2023/11.png" width="161px">
 </a>
-<a href="None">
+<a href="solutions/day12/day12.py">
   <img src="Media/2023/12.png" width="161px">
 </a>
 <a href="None">
