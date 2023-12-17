@@ -7,7 +7,7 @@ dx = [0, 1, 0, -1]
 dy = [1, 0, -1, 0]
 
 
-def dj(ultra=False):
+def dijkstra(ultra=False):
     d, q = {}, []
     heappush(q, (0, 0, 0, -1, -1))
 
@@ -44,11 +44,11 @@ def dj(ultra=False):
 
 
 def part1():
-    return dj()
+    return dijkstra()
 
 
 def part2():
-    return dj(True)
+    return dijkstra(True)
 
 
 print(part1(), part2())

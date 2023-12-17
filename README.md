@@ -56,7 +56,7 @@ My solutions for [Advent of Code](https://adventofcode.com/2023) in 2023. Probab
 <a href="solutions/day16/day16.py">
   <img src="Media/2023/16.png" width="161px">
 </a>
-<a href="solutions/day17/day17.py">
+<a href="solutions/day17/day17.cpp">
   <img src="Media/2023/17.png" width="161px">
 </a>
 <a href="None">
