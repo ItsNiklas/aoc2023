@@ -3,30 +3,31 @@ from itertools import pairwise, starmap
 inp = [x.split() for x in open(0).read().splitlines()]
 
 
-def part1():
+def part1and2(hex=False):
     y, x = 0, 0
-    b = [(y, x)]
-    v = 0
+    pnts = [(y, x)]
+    b = 0
 
-    for d, k, _ in inp:
-        v += int(k)
+    for d, k, c in inp:
+        b += (k := int(c[2:7], 16) if hex else int(k))
+        d = c[7] if hex else d
 
         match d:
-            case "U":
-                y -= int(k)
-            case "D":
-                y += int(k)
-            case "L":
-                x -= int(k)
-            case "R":
-                x += int(k)
+            case "R" | "0":
+                x += k
+            case "D" | "1":
+                y += k
+            case "L" | "2":
+                x -= k
+            case "U" | "3":
+                y -= k
 
-        b.append((y, x))
+        pnts.append((y, x))
 
     # Shoelace + Pick
-    A = abs(sum(starmap(lambda a, b: a[0] * b[1] - a[1] * b[0], pairwise(b)))) // 2
+    A = abs(sum(starmap(lambda a, b: a[0] * b[1] - a[1] * b[0], pairwise(pnts)))) // 2
 
-    return A + v // 2 + 1
+    return A + b // 2 + 1
 
 
-print(part1())
+print(part1and2(), part1and2(True))
