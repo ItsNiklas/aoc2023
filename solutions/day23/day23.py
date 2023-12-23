@@ -11,7 +11,7 @@ slope = {"v": 0, ">": 1, "^": 2, "<": 3}
 
 
 def part1():
-    # Djisktra with negative weights
+    # Dijsktra with negative weights
     q = queue.PriorityQueue()
     q.put((0, start, 0))
     dist = {start: 0}
@@ -38,23 +38,26 @@ def part1():
 
 def part2():
     # Compress the graph such that only the intersections of the maze are nodes.
-    # Check all points and look for intersections
-    nodes = {start, end}
+    # Check all points and look for intersections.
+    nodes = {start: 0, end: 1}
     for y in range(1, N - 1):
         for x in range(1, M - 1):
             if (
                 inp[y][x] == "."
                 and sum(inp[y + dy[i]][x + dx[i]] != "#" for i in range(4)) > 2
             ):
-                nodes.add((y, x))
+                nodes[(y, x)] = len(nodes)
 
     # Now we build edges between the nodes.
-    edges = {node: [] for node in nodes}
-    for y, x in nodes - {end}:
+    edges = {node: set() for node in nodes.values()}
+    for y, x in nodes:
+        if (y, x) == end:
+            continue
+
         for i in range(4):
             ny, nx = y + dy[i], x + dx[i]
 
-            if inp[ny][nx] != "#":  # We now walk in this direction until we hit a node
+            if inp[ny][nx] != "#":  # We now walk in this direction until we hit a node.
                 cnt, lastdir = 1, i
 
                 while (ny, nx) not in nodes:
@@ -69,23 +72,27 @@ def part2():
                             cnt += 1
                             break
 
-                edges[(y, x)].append(((ny, nx), cnt))
+                edges[nodes[(y, x)]].add((nodes[(ny, nx)], cnt))
 
-    # We now have a small graph. It is weighted and undirected. We are trying to find the longest path in this graph (NP-hard). PyPy is fast enough to solve this (8s).
-    def dfs_longest(node, visited, curr_w):
+    # We now have a small graph. It is weighted and undirected. We are trying to find the longest path in this graph (NP-hard). PyPy is fast enough to brute force it in 2s.
+    # 0 is the start node, 1 is the end node.
+    # We use a bitmask to keep track of which nodes we have visited!
+    def dfs_longest(node=0, visited=0, curr_w=0):
         nonlocal max_weight
-        visited.add(node)
 
-        if node == end:
+        visited |= 1 << node
+
+        if node == 1:
             max_weight = max(max_weight, curr_w)
             return
 
         for target, w in edges.get(node, []):
-            if target not in visited:
-                dfs_longest(target, visited.copy(), curr_w + w)
+            if visited & (1 << target):
+                continue
+            dfs_longest(target, visited, curr_w + w)
 
     max_weight = 0
-    dfs_longest(start, set(), 0)
+    dfs_longest()
     return max_weight
 
 
