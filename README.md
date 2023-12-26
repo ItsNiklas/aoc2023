@@ -16,7 +16,7 @@ Other:
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2023 - 48 ⭐
+  2023 - 50 ⭐
 </h1>
 <a href="solutions/day01/day01.cpp">
   <img src="Media/2023/01.png" width="161px">
