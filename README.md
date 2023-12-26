@@ -5,6 +5,7 @@ My solutions for [Advent of Code](https://adventofcode.com/2023) in 2023. Probab
 Rules:
 
 - Python: No external libraries, only the standard library. (Crates are allowed for Rust.)
+  - Violation: Day 24 Part 2. Using `numpy` to solve a 6x6 matrix.
 - Always a **general** solution, not just for the input. Any input should work.
 - A short runtime. No brute force solutions.
 
@@ -15,7 +16,7 @@ Other:
 
 <!-- AOC TILES BEGIN -->
 <h1 align="center">
-  2023 - 47 ⭐
+  2023 - 48 ⭐
 </h1>
 <a href="solutions/day01/day01.cpp">
   <img src="Media/2023/01.png" width="161px">
